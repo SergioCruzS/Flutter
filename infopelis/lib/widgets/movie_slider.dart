@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class MovieSlider extends StatelessWidget {
-  static var e;
   @override
   Widget build(BuildContext context) {
     return Container(
