@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/providers/movies_provider.dart';
-import 'package:infopelis/widgets/card_swiper.dart';
+import 'package:infopelis/widgets/movie_swiper.dart';
 import 'package:infopelis/widgets/movie_slider.dart';
 import 'package:provider/provider.dart';
 
@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             CardSwiper(movies: moviesProvider.onDisplayMovies),
             SizedBox(height: 15,),
-            MovieSlider(),
+            MovieSlider(movies: moviesProvider.popularMovies, title: 'Populares'),
           ],
         ),
       ),

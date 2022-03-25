@@ -31,7 +31,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Peliculas',
       initialRoute: 'home',
-      routes: {'home': (_) => HomeScreen(), 'details': (_) => DetailsScreen()},
+      routes: {
+        'home': (_) => HomeScreen(), 
+        'details': (_) => DetailsScreen()
+      },
     );
   }
 }
