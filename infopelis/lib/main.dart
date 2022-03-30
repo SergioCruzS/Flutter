@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:infopelis/providers/movies_provider.dart';
 import 'package:infopelis/screens/details_screen.dart';

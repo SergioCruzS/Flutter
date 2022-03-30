@@ -33,6 +33,8 @@ class Movie {
     double voteAverage;
     int voteCount;
 
+    String? heroId;
+
     get fullPosterImage{
       if (this.posterPath != null ) 
         return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
@@ -41,7 +43,7 @@ class Movie {
     }
     
     get fullBackdropPath{
-      if (this.posterPath != null ) 
+      if (this.backdropPath != null ) 
         return 'https://image.tmdb.org/t/p/w500${this.backdropPath}';
       else
         return 'https://timescineplex.com/times/img/no-poster.png';

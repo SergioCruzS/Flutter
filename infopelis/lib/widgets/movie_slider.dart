@@ -34,7 +34,7 @@ class MovieSlider extends StatelessWidget {
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: movies.length,
-                itemBuilder: (_, int index) =>_MoviePoster(movies[index])
+                itemBuilder: (_, int index) =>_MoviePoster(movies[index],title)
             ),
           )
         ],
@@ -46,11 +46,12 @@ class MovieSlider extends StatelessWidget {
 class _MoviePoster extends StatelessWidget {
 
   final Movie movie;
-
-  const _MoviePoster(this.movie);
+  final String sectionTitle;
+  const _MoviePoster(this.movie, this.sectionTitle);
 
   @override
   Widget build(BuildContext context) {
+    movie.heroId = 'slider${sectionTitle.trim()}-${movie.id}';
     return Container(
       width: 120,
       height: 190,
@@ -59,14 +60,17 @@ class _MoviePoster extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: ()=> Navigator.pushNamed(context, 'details',arguments: movie),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                placeholder: AssetImage('assets/no-image.jpg'), 
-                image: NetworkImage(movie.fullPosterImage),
-                width: 130,
-                height: 190,
-                fit: BoxFit.cover,
+            child: Hero(
+              tag: movie.heroId!,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: FadeInImage(
+                  placeholder: AssetImage('assets/no-image.jpg'), 
+                  image: NetworkImage(movie.fullPosterImage),
+                  width: 130,
+                  height: 190,
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
           ),
