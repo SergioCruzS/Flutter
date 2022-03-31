@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/models/models.dart';
+import 'package:infopelis/video/video_delegate.dart';
 import 'package:infopelis/widgets/widgets.dart';
 
 class DetailsScreen extends StatelessWidget {
@@ -17,6 +18,7 @@ class DetailsScreen extends StatelessWidget {
                    _PosterAndTitle(movie),
                    _Overview(movie),
                    CastingCards(movie.id),
+                   listVideosMovies(movie.id)
                 ]
               )
             )

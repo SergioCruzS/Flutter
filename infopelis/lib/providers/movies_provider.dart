@@ -11,7 +11,7 @@ import 'package:infopelis/models/searchMovies_response.dart';
 class MoviesProvider extends ChangeNotifier {
   String _apiKey = 'f9beb98e61d3dd537bff3381c028e8c2';
   String _baseUrl = 'api.themoviedb.org';
-  String _language = 'es-ES';
+  String _language = 'es-MX';
   String _nowPlaying = '3/movie/now_playing';
   String _popular = '3/movie/popular';
   String _topRated = '3/movie/top_rated';
@@ -23,6 +23,7 @@ class MoviesProvider extends ChangeNotifier {
   List<Movie> topMovies = [];
 
   Map<int,List<Cast>> moviesCast= {};
+  Map<int,List<VideoMovie>> moviesVideo= {};
   List<Movie> moviesSuggest= [];
 
   final StreamController<List<Movie>> _suggestionsSreamController = new StreamController.broadcast();
@@ -127,6 +128,21 @@ class MoviesProvider extends ChangeNotifier {
       });
 
       Future.delayed(Duration(milliseconds: 301)).then((_) => timer.cancel());
+  }
+
+  Future <List<VideoMovie>> getMovieVideo(int movieId)async{
+    if(moviesVideo.containsKey(movieId)) return moviesVideo[movieId]!;
+    var url = Uri.https(_baseUrl, '3/movie/$movieId/videos',
+        {
+          'api_key': _apiKey, 
+          'language': 'us-US',
+        },
+    );
+    final response = await http.get(url);
+    final videoResponse = VideoMovieResponse.fromJson(response.body);
+    
+    moviesVideo[movieId] = videoResponse.results;
+    return videoResponse.results;
   }
 
 }
