@@ -20,7 +20,7 @@ class MovieSwiper extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    if(this.movies.length ==0){
+    if(this.movies.length == 0){
       return Container(
         width: double.infinity,
         height: size.height*0.6,
@@ -44,21 +44,21 @@ class MovieSwiper extends StatelessWidget {
           return ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: GestureDetector(
-                    onTap: ()=> Navigator.pushNamed(context, 'details',arguments: movie),
-                    child: Hero(
-                      tag: movie.heroId!,
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: FadeInImage(
-                              placeholder: AssetImage('assets/no-image.jpg'), 
-                              image: NetworkImage(movie.fullPosterImage),
-                              width: 130,
-                              height: 190,
-                              fit: BoxFit.cover,
-                          ),
+                      onTap: ()=> Navigator.pushNamed(context, 'details',arguments: movie),
+                      child: Hero(
+                        tag: movie.heroId!,
+                        child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: FadeInImage(
+                                placeholder: AssetImage('assets/no-image.jpg'), 
+                                image: NetworkImage(movie.fullPosterImage),
+                                width: 130,
+                                height: 190,
+                                fit: BoxFit.cover,
+                            ),
+                        ),
                       ),
-                    ),
-            )
+            ),
           );
         },
       ),

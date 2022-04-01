@@ -29,7 +29,7 @@ class MoviesProvider extends ChangeNotifier {
   final StreamController<List<Movie>> _suggestionsSreamController = new StreamController.broadcast();
   Stream<List<Movie>> get suggestionStream => this._suggestionsSreamController.stream;
   final debouncer = Debouncer(
-    duration: Duration(milliseconds: 500),
+    duration: Duration(milliseconds: 400),
     
   );
 
@@ -130,11 +130,11 @@ class MoviesProvider extends ChangeNotifier {
         final results = await this.searchMovies(value);
         this._suggestionsSreamController.add(results);
       };
-      final timer = Timer.periodic(Duration(milliseconds: 300), (_) {
+      final timer = Timer.periodic(Duration(milliseconds: 200), (_) {
         debouncer.value = searchQuery;
       });
 
-      Future.delayed(Duration(milliseconds: 301)).then((_) => timer.cancel());
+      Future.delayed(Duration(milliseconds: 201)).then((_) => timer.cancel());
   }
 
   //Obtención de los videos o trailers de la película
@@ -144,7 +144,7 @@ class MoviesProvider extends ChangeNotifier {
     var url = Uri.https(_baseUrl, '3/movie/$movieId/videos',
         {
           'api_key': _apiKey, 
-          'language': 'us-US',
+          'language': 'es-US',
         },
     );
     final response = await http.get(url);

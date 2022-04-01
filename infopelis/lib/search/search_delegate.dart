@@ -8,14 +8,14 @@ import 'package:provider/provider.dart';
 class MovieSearchDelegate extends SearchDelegate{
   
   @override
-  // TODO: implement searchFieldLabel
+  // Texto de la barra de búsqueda
   String get searchFieldLabel => 'Buscar película';
 
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
         onPressed: () => query = '',
       )
     ];
@@ -24,7 +24,7 @@ class MovieSearchDelegate extends SearchDelegate{
   @override
   Widget? buildLeading(BuildContext context) {
     return IconButton(
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
       onPressed: (){
         close(context, null);
       },
@@ -92,7 +92,7 @@ class _MovieSuggest extends StatelessWidget {
         leading: Hero(
           tag: movie.heroId!,
           child: FadeInImage(
-            placeholder: AssetImage('assets/no-image.jpg'),
+            placeholder: const AssetImage('assets/no-image.jpg'),
             image: NetworkImage(movie.fullPosterImage),
             width: 50,
             fit: BoxFit.contain,

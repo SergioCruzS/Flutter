@@ -17,23 +17,26 @@ class HomeScreen extends StatelessWidget {
     final moviesProvider = Provider.of<MoviesProvider>(context);
 
     return Scaffold(
+      //backgroundColor: Color.fromARGB(218, 0, 0, 0),
       appBar: AppBar(
         title: const Text('Películas en cines'),
-        elevation: 0,
+        elevation: 10,
         actions: [
           IconButton(
-             icon: Icon(Icons.search),
+             icon: const Icon(Icons.search),
              onPressed: ()=> showSearch(context: context, delegate: MovieSearchDelegate()),
           )
         ],
+        centerTitle: true,
+        backgroundColor: Color.fromARGB(255, 8, 48, 227),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             MovieSwiper(movies: moviesProvider.onDisplayMovies),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             MovieSlider(movies: moviesProvider.popularMovies, title: 'Populares'),
-            SizedBox(height: 15,),
+            const SizedBox(height: 15,),
             MovieSlider(movies: moviesProvider.topMovies, title: 'Mejor Calificadas'),
           ],
         ),

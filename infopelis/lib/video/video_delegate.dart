@@ -151,17 +151,17 @@ class listVideosMovies extends StatelessWidget {
       builder: (_,AsyncSnapshot<List<VideoMovie>> snapshot){
            if (!snapshot.hasData) {
               return Container(
-                child: Center(child: Container(height: 30,width: 30,child: CircularProgressIndicator())),
+                child: Center(child: Container(height: 30,width: 30,child: const CircularProgressIndicator())),
                 height: 300,
-                padding: EdgeInsets.only(bottom: 50),
+                padding: const EdgeInsets.only(bottom: 50),
               );
            }
            final List<VideoMovie> videos = snapshot.data!;
            if (videos.isEmpty) {
               return Container(
-                child: Center(child: Container(height: 30,width: 30,child: CircularProgressIndicator())),
+                child: Center(child: Container(height: 30,width: 30,child: const CircularProgressIndicator())),
                 height: 300,
-                padding: EdgeInsets.only(bottom: 50),
+                padding: const EdgeInsets.only(bottom: 50),
               );
            }
            for (var i = 0; i < videos.length; i++) {

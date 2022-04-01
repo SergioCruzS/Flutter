@@ -30,7 +30,7 @@ class MovieSlider extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
               title,
-              style: TextStyle(fontSize: 20),
+              style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ),
           SizedBox(height: 5,),
@@ -84,6 +84,7 @@ class _MoviePoster extends StatelessWidget {
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
+            style: TextStyle(color: Colors.black),
           )
         ],
       ),
