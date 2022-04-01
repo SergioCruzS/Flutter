@@ -1,13 +1,16 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
 import '../models/models.dart';
 import '../providers/movies_provider.dart';
+
+/*
+    Widget de video
+*/
+
 
 class VideoTrailer extends StatefulWidget {
   final List<String> videos;

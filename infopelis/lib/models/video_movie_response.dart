@@ -6,6 +6,14 @@ import 'dart:convert';
 
 import 'package:infopelis/models/models.dart';
 
+/*
+  Español:
+  Clase para obtener la lista de videos de las películas
+
+  English
+  Class to get the list of videos of the movies
+*/
+
 class VideoMovieResponse {
     VideoMovieResponse({
         required this.id,

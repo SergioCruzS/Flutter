@@ -1,5 +1,14 @@
 import 'dart:convert';
 
+
+ /*
+  Español:
+  Clase para crear el objeto película
+
+  English
+  Class to create movie object
+*/
+
 class Movie {
     Movie({
         required this.adult,
@@ -32,15 +41,37 @@ class Movie {
     bool video;
     double voteAverage;
     int voteCount;
+    
+    /*
+      Español:
+      heroId es el identificador para la animación
 
+      English:
+      heroId is the identifier for the animation
+    */
     String? heroId;
 
+    /*
+      Español:
+      fullPosterImage obtiene el poster de la película, en caso de no tener poster regresa otra imagen
+
+      English:
+      fullPosterImage obtains the movie poster, in case of not having a poster it returns another image
+    */
     get fullPosterImage{
       if (this.posterPath != null ) 
         return 'https://image.tmdb.org/t/p/w500${this.posterPath}';
       else
         return 'https://timescineplex.com/times/img/no-poster.png';
     }
+
+    /*
+      Español:
+      fullBackdropPath obtiene el fondo de la película, en caso de no tener poster regresa otra imagen
+
+      English:
+      fullBackdropPath obtains the movie Backdrop, in case of not having a poster it returns another image
+    */
     
     get fullBackdropPath{
       if (this.backdropPath != null ) 

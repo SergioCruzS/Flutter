@@ -1,5 +1,13 @@
 import 'dart:convert';
 
+/*
+  Español:
+  Clase para crear objeto de video
+
+  English
+  Class to create video object
+*/
+
 class VideoMovie {
     VideoMovie({
        required this.iso6391,

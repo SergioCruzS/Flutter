@@ -1,5 +1,13 @@
 import 'dart:convert';
 
+/*
+  Español:
+  Clase para crear objeto de actor
+
+  English
+  Class to create actor object
+*/
+
 class Cast {
     Cast({
         required this.adult,

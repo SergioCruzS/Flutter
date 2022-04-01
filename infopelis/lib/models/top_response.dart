@@ -6,6 +6,14 @@ import 'dart:convert';
 
 import 'package:infopelis/models/models.dart';
 
+/*
+  Español:
+  Clase para obtener la lista de películas mejor calificadas
+
+  English
+  Class to get the list of movies top
+*/
+
 class TopResponse {
     TopResponse({
         required this.page,

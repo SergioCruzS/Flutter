@@ -3,6 +3,10 @@ import 'package:infopelis/models/models.dart';
 import 'package:infopelis/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
 
+/*
+  Widget de carta para los actores
+*/
+
 class CastingCards extends StatelessWidget {
    
   final int movieId;

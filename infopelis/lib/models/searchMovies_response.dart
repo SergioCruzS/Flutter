@@ -6,6 +6,14 @@ import 'dart:convert';
 
 import 'package:infopelis/models/models.dart';
 
+/*
+  Español:
+  Clase para obtener la búsqueda de películas
+
+  English
+  Class to get movie search
+*/
+
 class SearchMovieResponse {
     SearchMovieResponse({
        required this.page,

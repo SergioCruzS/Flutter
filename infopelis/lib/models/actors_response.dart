@@ -3,8 +3,15 @@
 //     final actorsResponse = actorsResponseFromMap(jsonString);
 
 import 'dart:convert';
-
 import 'package:infopelis/models/models.dart';
+
+/*
+  Español:
+  Clase para obtener la lista de actores y del equipo de producción de la película
+
+  English
+  Class to get the list of actors and the production team of the movie
+*/
 
 class ActorsResponse {
     ActorsResponse({

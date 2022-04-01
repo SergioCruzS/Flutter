@@ -3,6 +3,10 @@ import 'package:infopelis/models/models.dart';
 import 'package:infopelis/video/video_delegate.dart';
 import 'package:infopelis/widgets/widgets.dart';
 
+/* 
+   Widget de la pantalla de Detalles de la película
+*/
+
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

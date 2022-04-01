@@ -6,6 +6,14 @@ import 'dart:convert';
 
 import 'package:infopelis/models/models.dart';
 
+/*
+  Español:
+  Clase para obtener la lista de películas populares
+
+  English
+  Class to get the list of movies popular
+*/
+
 class PopularResponse {
     PopularResponse({
         required this.page,

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../models/movie.dart';
 
+/*
+   Widget del slider de películas
+*/
+
 class MovieSlider extends StatelessWidget {
 
   final List<Movie> movies;

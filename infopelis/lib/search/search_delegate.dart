@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:infopelis/models/movie.dart';
 import 'package:infopelis/providers/movies_provider.dart';
 import 'package:provider/provider.dart';
-
+/*
+  Widget de búsqueda
+*/
 class MovieSearchDelegate extends SearchDelegate{
   
   @override

@@ -6,6 +6,13 @@ import 'dart:convert';
 
 import 'package:infopelis/models/movie.dart';
 
+/*
+  Español:
+  Clase para obtener la lista de películas que están en estreno
+
+  English
+  Class to get the list of movies that are in premiere
+*/
 
 class NowPlayingResponse {
     

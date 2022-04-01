@@ -2,11 +2,16 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:infopelis/models/models.dart';
 
-class CardSwiper extends StatelessWidget {
+
+/*
+   Widget del swiper de películas
+*/
+
+class MovieSwiper extends StatelessWidget {
 
   final List<Movie> movies;
 
-  const CardSwiper({
+  const MovieSwiper({
     Key? key, 
     required this.movies
   }) : super(key: key);

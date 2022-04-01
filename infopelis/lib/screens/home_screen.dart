@@ -5,6 +5,10 @@ import 'package:infopelis/widgets/movie_swiper.dart';
 import 'package:infopelis/widgets/movie_slider.dart';
 import 'package:provider/provider.dart';
 
+/*
+   Pantalla principal de la aplicación
+*/
+
 class HomeScreen extends StatelessWidget {
   
   @override
@@ -26,7 +30,7 @@ class HomeScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            CardSwiper(movies: moviesProvider.onDisplayMovies),
+            MovieSwiper(movies: moviesProvider.onDisplayMovies),
             SizedBox(height: 15,),
             MovieSlider(movies: moviesProvider.popularMovies, title: 'Populares'),
             SizedBox(height: 15,),

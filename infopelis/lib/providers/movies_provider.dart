@@ -33,12 +33,14 @@ class MoviesProvider extends ChangeNotifier {
     
   );
 
+  //Constructor de MoviesProvider()
   MoviesProvider() {
     this.getOnDisplayMovies();
     this.getPopularMovies();
     this.getTopRatedMovies();
   }
 
+  //Obtención de películas en cines
   getOnDisplayMovies() async {
     var url = Uri.https(_baseUrl, _nowPlaying,
         {'api_key': _apiKey, 
@@ -54,6 +56,7 @@ class MoviesProvider extends ChangeNotifier {
     
   }
 
+  //Obtención de películas populares
   getPopularMovies() async {
     var url = Uri.https(_baseUrl, _popular,
         {
@@ -69,6 +72,7 @@ class MoviesProvider extends ChangeNotifier {
     notifyListeners(); //notifica a los widgets para que redibuje si surge cambio en la data
   }
 
+  //Obtención de películas populares
   getTopRatedMovies() async {
     var url = Uri.https(_baseUrl, _topRated,
         {
@@ -84,7 +88,7 @@ class MoviesProvider extends ChangeNotifier {
     notifyListeners(); //notifica a los widgets para que redibuje si surge cambio en la data
   }
 
-
+  //Obtención de actores de la película
   Future <List<Cast>> getMovieCast(int movieId)async{
     if(moviesCast.containsKey(movieId)) return moviesCast[movieId]!;
     var url = Uri.https(_baseUrl, '${_credits}$movieId/credits',
@@ -100,6 +104,7 @@ class MoviesProvider extends ChangeNotifier {
     return actorsResponse.cast;
   }
 
+  //Obtención de los resultados de búsqueda
   Future<List<Movie>> searchMovies (String query) async {
   //  if(moviesSuggest.containsKey(query)) return moviesSuggest[query]!;
      final url = Uri.https(_baseUrl, _searchMovie,
@@ -114,9 +119,11 @@ class MoviesProvider extends ChangeNotifier {
     moviesSuggest = searchResponse.results;
     return searchResponse.results;
   }
+  
+  //Retorno de resultados
+  searchResults() => this.moviesSuggest;
 
-  seachResults() => this.moviesSuggest;
-
+  //Obtención de sugerencias de películas según la búsqueda
   void getSuggestionsByQuery(String searchQuery){
       debouncer.value='';
       debouncer.onValue=(value)async{
@@ -130,6 +137,8 @@ class MoviesProvider extends ChangeNotifier {
       Future.delayed(Duration(milliseconds: 301)).then((_) => timer.cancel());
   }
 
+  //Obtención de los videos o trailers de la película
+  
   Future <List<VideoMovie>> getMovieVideo(int movieId)async{
     if(moviesVideo.containsKey(movieId)) return moviesVideo[movieId]!;
     var url = Uri.https(_baseUrl, '3/movie/$movieId/videos',
