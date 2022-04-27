@@ -28,7 +28,7 @@ class SocketService with ChangeNotifier{
   }
 
   void _initConfig(){
-    this._socket = IO.io('http://192.168.228.62:3000/',{
+    this._socket = IO.io('http://192.168.43.182:3000/',{
       'transports':['websocket'],
       'autoConnect':true
     });
@@ -62,6 +62,16 @@ class SocketService with ChangeNotifier{
         print('popularmovies');
         if (data.length != 0) {
           this.popularMovies = (data as List)
+                  .map((movie) => Movie.fromMap(movie))
+                  .toList();
+        }
+        notifyListeners();  
+    });
+
+    this._socket.on('topMovies', (data){
+        print('topMovies');
+        if (data.length != 0) {
+          this.topMovies = (data as List)
                   .map((movie) => Movie.fromMap(movie))
                   .toList();
         }

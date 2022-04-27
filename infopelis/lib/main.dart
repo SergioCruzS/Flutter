@@ -16,6 +16,9 @@ class AppState extends StatelessWidget {
         ChangeNotifierProvider(
           //create: (_) => MoviesProvider(),lazy: false,
           create: (_) => SocketService(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => MoviesProvider(),
         )
       ],
       child: MyApp(),

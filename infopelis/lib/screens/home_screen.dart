@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:infopelis/providers/movies_provider.dart';
 import 'package:infopelis/search/search_delegate.dart';
 import 'package:infopelis/widgets/movie_swiper.dart';
 import 'package:infopelis/widgets/movie_slider.dart';
@@ -50,8 +49,8 @@ class _HomeScreenState extends State<HomeScreen> {
             MovieSwiper(movies: moviesProvider.onDisplayMovies),
             const SizedBox(height: 15,),
             MovieSlider(movies: moviesProvider.popularMovies, title: 'Populares'),
-            //const SizedBox(height: 15,),
-            //MovieSlider(movies: moviesProvider.topMovies, title: 'Mejor Calificadas'),
+            const SizedBox(height: 15,),
+            MovieSlider(movies: moviesProvider.topMovies, title: 'Mejor Calificadas'),
           ],
         ),
       ),

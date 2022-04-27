@@ -12,15 +12,9 @@ class MoviesProvider extends ChangeNotifier {
   String _apiKey = 'f9beb98e61d3dd537bff3381c028e8c2';
   String _baseUrl = 'api.themoviedb.org';
   String _language = 'es-MX';
-  String _nowPlaying = '3/movie/now_playing';
-  String _popular = '3/movie/popular';
-  String _topRated = '3/movie/top_rated';
   String _credits = '3/movie/';
   String _searchMovie = '3/search/movie';
 
-  List<Movie> onDisplayMovies = [];
-  List<Movie> popularMovies = [];
-  List<Movie> topMovies = [];
 
   Map<int,List<Cast>> moviesCast= {};
   Map<int,List<VideoMovie>> moviesVideo= {};
@@ -34,58 +28,7 @@ class MoviesProvider extends ChangeNotifier {
   );
 
   //Constructor de MoviesProvider()
-  MoviesProvider() {
-    this.getOnDisplayMovies();
-    this.getPopularMovies();
-    this.getTopRatedMovies();
-  }
-
-  //Obtención de películas en cines
-  getOnDisplayMovies() async {
-    var url = Uri.https(_baseUrl, _nowPlaying,
-        {'api_key': _apiKey, 
-         'language': _language, 
-        'page': '1'
-        }
-    );
-
-    final response = await http.get(url);
-    final nowPlayingResponse = NowPlayingResponse.fromJson(response.body);
-    onDisplayMovies = nowPlayingResponse.results;
-    notifyListeners(); //notifica a los widgets para que redibuje si surge cambio en la data
-  }
-
-  //Obtención de películas populares
-  getPopularMovies() async {
-    var url = Uri.https(_baseUrl, _popular,
-        {
-          'api_key': _apiKey, 
-          'language': _language, 
-          'page': '1'
-        }
-    );
-
-    final response = await http.get(url);
-    final popularResponse = PopularResponse.fromJson(response.body);
-    popularMovies = [...popularMovies,...popularResponse.results];
-    notifyListeners(); //notifica a los widgets para que redibuje si surge cambio en la data
-  }
-
-  //Obtención de películas populares
-  getTopRatedMovies() async {
-    var url = Uri.https(_baseUrl, _topRated,
-        {
-          'api_key': _apiKey, 
-          'language': _language, 
-          'page': '1'
-        }
-    );
-
-    final response = await http.get(url);
-    final topResponse = TopResponse.fromJson(response.body);
-    topMovies = [...topMovies,...topResponse.results];
-    notifyListeners(); //notifica a los widgets para que redibuje si surge cambio en la data
-  }
+  MoviesProvider() {}
 
   //Obtención de actores de la película
   Future <List<Cast>> getMovieCast(int movieId)async{
