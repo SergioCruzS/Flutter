@@ -53,7 +53,6 @@ class MoviesProvider extends ChangeNotifier {
     final nowPlayingResponse = NowPlayingResponse.fromJson(response.body);
     onDisplayMovies = nowPlayingResponse.results;
     notifyListeners(); //notifica a los widgets para que redibuje si surge cambio en la data
-    
   }
 
   //Obtención de películas populares

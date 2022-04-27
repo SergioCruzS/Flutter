@@ -5,16 +5,30 @@ import 'package:infopelis/widgets/movie_swiper.dart';
 import 'package:infopelis/widgets/movie_slider.dart';
 import 'package:provider/provider.dart';
 
+import '../services/socket_service.dart';
+
 /*
    Pantalla principal de la aplicación
 */
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  
+  @override
+  void initState() {
+    final socketService = Provider.of<SocketService>(context,listen: false);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
 
-    final moviesProvider = Provider.of<MoviesProvider>(context);
+    final moviesProvider = Provider.of<SocketService>(context);
 
     return Scaffold(
       //backgroundColor: Color.fromARGB(218, 0, 0, 0),
@@ -36,8 +50,8 @@ class HomeScreen extends StatelessWidget {
             MovieSwiper(movies: moviesProvider.onDisplayMovies),
             const SizedBox(height: 15,),
             MovieSlider(movies: moviesProvider.popularMovies, title: 'Populares'),
-            const SizedBox(height: 15,),
-            MovieSlider(movies: moviesProvider.topMovies, title: 'Mejor Calificadas'),
+            //const SizedBox(height: 15,),
+            //MovieSlider(movies: moviesProvider.topMovies, title: 'Mejor Calificadas'),
           ],
         ),
       ),
