@@ -32,10 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       //backgroundColor: Color.fromARGB(218, 0, 0, 0),
       appBar: AppBar(
-        title: const Text('Películas en cines'),
+        title: const Text('Películas en cines',style: TextStyle(fontFamily: 'Bebas',fontSize: 36),),
         elevation: 10,
         actions: [
           IconButton(
+            iconSize: 36,
+            color: Color.fromARGB(255, 28, 206, 222),
              icon: const Icon(Icons.search),
              onPressed: ()=> showSearch(context: context, delegate: MovieSearchDelegate()),
           )

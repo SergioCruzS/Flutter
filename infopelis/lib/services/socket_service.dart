@@ -28,7 +28,7 @@ class SocketService with ChangeNotifier{
   }
 
   void _initConfig(){
-    this._socket = IO.io('http://192.168.43.182:3000/',{
+    this._socket = IO.io('http://192.168.227.46:3000/',{
       'transports':['websocket'],
       'autoConnect':true
     });
