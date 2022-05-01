@@ -3,6 +3,7 @@ import 'package:infopelis/providers/movies_provider.dart';
 import 'package:infopelis/screens/details_screen.dart';
 import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/screens/login_screen.dart';
+import 'package:infopelis/screens/register_screen.dart';
 import 'package:infopelis/services/socket_service.dart';
 import 'package:provider/provider.dart';
 
@@ -37,9 +38,10 @@ class MyApp extends StatelessWidget {
       title: 'Peliculas',
       initialRoute: 'login',
       routes: {
-        'home': (_) => HomeScreen(), 
-        'details': (_) => DetailsScreen(),
-        'login':(_) => LoginScreen()
+        'home'    : (_) => HomeScreen(), 
+        'details' : (_) => DetailsScreen(),
+        'login'   : (_) => LoginScreen(),
+        'register': (_) => RegisterScreen()
       },
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/widgets/customTextField.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -87,7 +88,7 @@ class _Labels extends StatelessWidget {
         children: <Widget>[
            Text('¿No tienes cuenta?'),
            SizedBox(height: 10,),
-           ElevatedButton(onPressed: (){}, child: Text('Registrate ahora'))
+           ElevatedButton(onPressed: (){Navigator.pushNamed(context, 'home');}, child: Text('Registrate ahora'))
         ],
       ),
     );
