@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/services/auth_service.dart';
+import 'package:infopelis/widgets/alert_dialog.dart';
 import 'package:infopelis/widgets/customTextField.dart';
 import 'package:provider/provider.dart';
 
@@ -76,9 +77,15 @@ class __FormState extends State<_Form> {
             isPassword: true,
           ),
           ElevatedButton(
-            onPressed: authService.accessing ? null : (){
+            onPressed: authService.accessing ? null : () async {
               FocusScope.of(context).unfocus();
-              authService.login(emailController.text.trim(), passwordController.text);
+              final loginOk = await authService.login(emailController.text.trim(), passwordController.text);
+
+              if (loginOk) {
+                Navigator.pushReplacementNamed(context, 'home');
+              }else{
+                showAlertDialog(context, 'Error al iniciar sesión', 'Revise que sus datos sean correctos');
+              }
             }, 
             child: Text('Iniciar Sesión')
           )

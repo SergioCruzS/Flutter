@@ -18,7 +18,7 @@ class AuthService with ChangeNotifier{
     notifyListeners();
   }
 
-  Future login( String email, String password) async {
+  Future<bool> login( String email, String password) async {
 
     this.accessing = true;
     
@@ -34,14 +34,18 @@ class AuthService with ChangeNotifier{
        }
     );
 
+
+    this.accessing = false;
+    
     if ( resp.statusCode == 200 ) {
       final loginResponse = loginResponseFromJson(resp.body);
       this.user = loginResponse.userDb;
+
+      return true;
+    }else{
+      return false;
     }
 
-    print(resp.body);
-
-    this.accessing = false;
 
   }
 
