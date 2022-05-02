@@ -38,7 +38,7 @@ class _Logo extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-                Image(image: AssetImage('assets/loading.gif')),
+                //Image(image: AssetImage('assets/loading.gif')),
             ],
           ),
         ),

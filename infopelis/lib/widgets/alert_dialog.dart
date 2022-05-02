@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 showAlertDialog(BuildContext context, String title, String subtitle){

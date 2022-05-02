@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/models/models.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
@@ -28,7 +29,7 @@ class SocketService with ChangeNotifier{
   }
 
   void _initConfig(){
-    this._socket = IO.io('http://192.168.227.46:3000/',{
+    this._socket = IO.io(Enviroment.socketUrl,{
       'transports':['websocket'],
       'autoConnect':true
     });
