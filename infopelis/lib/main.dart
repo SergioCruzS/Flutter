@@ -4,6 +4,7 @@ import 'package:infopelis/screens/details_screen.dart';
 import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/screens/login_screen.dart';
 import 'package:infopelis/screens/register_screen.dart';
+import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/services/socket_service.dart';
 import 'package:provider/provider.dart';
 
@@ -20,6 +21,9 @@ class AppState extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => MoviesProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => AuthService(),
         )
       ],
       child: MyApp(),

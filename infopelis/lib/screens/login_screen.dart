@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/screens/home_screen.dart';
+import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/widgets/customTextField.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
 
@@ -55,6 +57,7 @@ class __FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 50),
       child: Column(
@@ -72,7 +75,13 @@ class __FormState extends State<_Form> {
             textController: passwordController,
             isPassword: true,
           ),
-          ElevatedButton(onPressed: (){}, child: Text('Iniciar Sesión'))
+          ElevatedButton(
+            onPressed: authService.accessing ? null : (){
+              FocusScope.of(context).unfocus();
+              authService.login(emailController.text.trim(), passwordController.text);
+            }, 
+            child: Text('Iniciar Sesión')
+          )
         ],
       ),
     );
