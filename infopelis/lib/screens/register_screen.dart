@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/services/auth_service.dart';
+import 'package:infopelis/widgets/alert_dialog.dart';
 import 'package:infopelis/widgets/customTextField.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatelessWidget {
 
@@ -43,6 +46,7 @@ class _FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 50),
        child: Column(
@@ -55,7 +59,7 @@ class _FormState extends State<_Form> {
            CustomTextField(
              icon: Icons.mail_outline, 
              placeholder: 'Correo electrónico', 
-             textController: nameController,
+             textController: emailController,
              keyboardType: TextInputType.emailAddress,
           ),
           CustomTextField(
@@ -71,7 +75,16 @@ class _FormState extends State<_Form> {
              isPassword: true,
           ),
           ElevatedButton(
-            onPressed: (){}, 
+            onPressed: authService.accessing ? null : () async {
+              FocusScope.of(context).unfocus();
+              final registerOk = await authService.register(nameController.text,emailController.text.trim(), passwordController.text);
+
+              if (registerOk) {
+                Navigator.pushReplacementNamed(context, 'home');
+              }else{
+                showAlertDialog(context, 'Error al registrarse', 'Revise que sus datos sean correctos');
+              }
+            }, 
             child: Text('Registrarse')
           )
 

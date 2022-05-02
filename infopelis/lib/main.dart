@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/providers/movies_provider.dart';
+import 'package:infopelis/screens/account_screen.dart';
 import 'package:infopelis/screens/details_screen.dart';
 import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/screens/login_screen.dart';
@@ -40,12 +41,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Peliculas',
-      initialRoute: 'login',
+      initialRoute: 'account',
       routes: {
         'home'    : (_) => HomeScreen(), 
         'details' : (_) => DetailsScreen(),
         'login'   : (_) => LoginScreen(),
-        'register': (_) => RegisterScreen()
+        'register': (_) => RegisterScreen(),
+        'account' : (_) => AccountScreen()
       },
     );
   }

@@ -104,7 +104,7 @@ class _Labels extends StatelessWidget {
         children: <Widget>[
            Text('¿No tienes cuenta?'),
            SizedBox(height: 10,),
-           ElevatedButton(onPressed: (){Navigator.pushNamed(context, 'home');}, child: Text('Registrate ahora'))
+           ElevatedButton(onPressed: (){Navigator.pushNamed(context, 'register');}, child: Text('Registrate ahora'))
         ],
       ),
     );

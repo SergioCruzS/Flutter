@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/search/search_delegate.dart';
+import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/widgets/movie_swiper.dart';
 import 'package:infopelis/widgets/movie_slider.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +21,6 @@ class _HomeScreenState extends State<HomeScreen> {
   
   @override
   void initState() {
-    final socketService = Provider.of<SocketService>(context,listen: false);
     super.initState();
   }
 
@@ -44,6 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 8, 48, 227),
+        leading: IconButton(
+          onPressed: () async {
+            await checkLoginState(context);
+          }, 
+          icon: Icon(Icons.account_circle)
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -58,4 +64,10 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+}
+
+
+Future checkLoginState(BuildContext context) async {
+    final authService = Provider.of<AuthService>(context, listen: false);
+    final authenticated = authService.isLoggedIn();
 }
