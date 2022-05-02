@@ -46,7 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Color.fromARGB(255, 8, 48, 227),
         leading: IconButton(
           onPressed: () async {
-            await checkLoginState(context);
+            final bool loginOk = await checkLoginState(context);
+            if (loginOk) {
+              Navigator.pushNamed(context, 'account');
+            }else{
+              Navigator.pushNamed(context, 'login');
+            }
           }, 
           icon: Icon(Icons.account_circle)
         ),
@@ -70,4 +75,5 @@ class _HomeScreenState extends State<HomeScreen> {
 Future checkLoginState(BuildContext context) async {
     final authService = Provider.of<AuthService>(context, listen: false);
     final authenticated = authService.isLoggedIn();
+    return authenticated;
 }

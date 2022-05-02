@@ -11,6 +11,9 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: Text('Iniciar Sesión'),
+        ),
         backgroundColor: Colors.grey[200],
         body: SingleChildScrollView(
           padding: EdgeInsets.only(top:100),

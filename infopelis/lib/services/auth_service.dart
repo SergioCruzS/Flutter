@@ -11,6 +11,7 @@ class AuthService with ChangeNotifier{
 
   late User user;
   bool _accessing = false;
+  static Map<String, dynamic> data = {};
 
   // Crear storage
   final _storage = new FlutterSecureStorage();
@@ -119,7 +120,8 @@ class AuthService with ChangeNotifier{
     if ( resp.statusCode == 200 ) {
       final loginResponse = loginResponseFromJson(resp.body);
       this.user = loginResponse.userDb;
-
+      final respBody = jsonDecode(resp.body);
+      data = respBody['userDB'];
       await this._saveToken(loginResponse.token);
       
       return true;
