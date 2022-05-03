@@ -104,6 +104,7 @@ class AuthService with ChangeNotifier{
   }
   
   Future logout() async{
+    data ={};
     //Delete token
     await _storage.delete(key: 'token');
   }
@@ -128,6 +129,7 @@ class AuthService with ChangeNotifier{
     }else{
       //final respBody = jsonDecode(resp.body);
       //return respBody['msg'];
+      data = {};
       this.logout();
       return false;
     }

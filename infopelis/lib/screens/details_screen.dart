@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/models/models.dart';
+import 'package:infopelis/services/auth_service.dart';
+import 'package:infopelis/services/favorite_service.dart';
 import 'package:infopelis/video/video_delegate.dart';
 import 'package:infopelis/widgets/widgets.dart';
+import 'package:provider/provider.dart';
 
 /* 
    Widget de la pantalla de Detalles de la película
 */
 
+bool logged = false;
+
 class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
-
     return Scaffold(
         body: CustomScrollView(
           slivers: [
@@ -65,11 +69,19 @@ class _CustomAppBar extends StatelessWidget {
   }
 }
 
-class _PosterAndTitle extends StatelessWidget {
+class _PosterAndTitle extends StatefulWidget {
   final Movie movie;
 
   const _PosterAndTitle(this.movie);
 
+  @override
+  State<_PosterAndTitle> createState() => _PosterAndTitleState(this.movie);
+}
+
+class _PosterAndTitleState extends State<_PosterAndTitle> {
+  final Movie movie;
+
+  _PosterAndTitleState(this.movie);
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
@@ -80,13 +92,49 @@ class _PosterAndTitle extends StatelessWidget {
       child: Row(
         children: [
           Hero(
-            tag: movie.heroId!,
+            tag: widget.movie.heroId!,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: FadeInImage(
-                placeholder: AssetImage('assets/no-image.jpg'),
-                image: NetworkImage(movie.fullPosterImage),
-                height: 200,
+              child: Stack(
+                children: [ 
+                  FadeInImage(
+                    placeholder: AssetImage('assets/no-image.jpg'),
+                    image: NetworkImage(widget.movie.fullPosterImage),
+                    height: 200,
+                  ),
+                  GestureDetector(
+                    onTap: () async {
+                      if (AuthService.data.isNotEmpty) {
+                        FavoriteService.favorite = !FavoriteService.favorite;
+                        if (FavoriteService.favorite) {
+                          final favService = Provider.of<FavoriteService>(context,listen: false);
+                          await favService.register(
+                            movie.id.toString(), 
+                            movie.title, 
+                            movie.originalTitle, 
+                            movie.posterPath!, 
+                            movie.voteAverage.toString(), 
+                            AuthService.data['uid']
+                          );
+                        } else {
+                          final favService = Provider.of<FavoriteService>(context,listen: false);
+                          bool respDelete = await favService.deleteMovieinDB(movie.id.toString());
+                          if (respDelete) {
+                            FavoriteService.favorite = false;
+                          }
+                        }
+                      }
+                      
+                      setState(() {});
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(left: 90,top: 5),
+                      height: 30,
+                      width: 30,
+                      child: FavoriteService.favorite ? Icon(Icons.star) : Icon(Icons.star_outline),                    
+                    ),
+                  )
+                ]
               ),
             ),
           ),
@@ -100,13 +148,13 @@ class _PosterAndTitle extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  movie.title,
+                  widget.movie.title,
                   style: textTheme.headline5,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
                 Text(
-                  movie.originalTitle,
+                  widget.movie.originalTitle,
                   style: textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -119,7 +167,7 @@ class _PosterAndTitle extends StatelessWidget {
                     ),
                     SizedBox(width: 5),
                     Text(
-                      movie.voteAverage.toString(),
+                      widget.movie.voteAverage.toString(),
                       style: textTheme.caption,
                     )
                   ],

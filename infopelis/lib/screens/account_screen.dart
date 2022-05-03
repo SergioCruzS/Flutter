@@ -26,6 +26,7 @@ class AccountScreen extends StatelessWidget {
                     primary: Colors.green
                   ),
                   onPressed: (){
+                    Navigator.pushNamed(context, 'favorite');
                   }, 
                   child: Text('Ver mis favoritos')
                 ),

@@ -13,7 +13,7 @@ class Movie {
     Movie({
         required this.adult,
         this.backdropPath,
-        required this.genreIds,
+        //required this.genreIds,
         required this.id,
         required this.originalLanguage,
         required this.originalTitle,
@@ -29,7 +29,7 @@ class Movie {
 
     bool adult;
     String? backdropPath;
-    List<int> genreIds;
+    //List<int> genreIds;
     int id;
     String originalLanguage;
     String originalTitle;
@@ -85,7 +85,7 @@ class Movie {
     factory Movie.fromMap(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+        //genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         originalLanguage: json["original_language"],
         originalTitle: json["original_title"],

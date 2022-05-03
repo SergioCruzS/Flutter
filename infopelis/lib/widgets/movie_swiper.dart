@@ -1,6 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:infopelis/models/models.dart';
+import 'package:infopelis/services/favorite_service.dart';
+import 'package:provider/provider.dart';
 
 
 /*
@@ -44,20 +46,29 @@ class MovieSwiper extends StatelessWidget {
           return ClipRRect(
             borderRadius: BorderRadius.circular(20),
             child: GestureDetector(
-                      onTap: ()=> Navigator.pushNamed(context, 'details',arguments: movie),
-                      child: Hero(
-                        tag: movie.heroId!,
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: FadeInImage(
-                                placeholder: AssetImage('assets/no-image.jpg'), 
-                                image: NetworkImage(movie.fullPosterImage),
-                                width: 130,
-                                height: 190,
-                                fit: BoxFit.cover,
-                            ),
-                        ),
-                      ),
+              onTap: ()async{
+                bool resp = await Provider.of<FavoriteService>(context,listen: false).findMovieinDB(movie.id.toString());
+                if (resp) {
+                  FavoriteService.favorite = true;
+                  Navigator.pushNamed(context, 'details',arguments: movie);
+                }else{
+                  FavoriteService.favorite = false;
+                  Navigator.pushNamed(context, 'details',arguments: movie);
+                }
+              },
+              child: Hero(
+                tag: movie.heroId!,
+                child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: FadeInImage(
+                        placeholder: AssetImage('assets/no-image.jpg'), 
+                        image: NetworkImage(movie.fullPosterImage),
+                        width: 130,
+                        height: 190,
+                        fit: BoxFit.cover,
+                    ),
+                ),
+              ),
             ),
           );
         },

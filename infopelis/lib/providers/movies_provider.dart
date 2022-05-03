@@ -96,4 +96,19 @@ class MoviesProvider extends ChangeNotifier {
     return videoResponse.results;
   }
 
+  //Buscar película por id
+  Future <Movie> getMoviebyID(int movieId)async{
+
+    var url = Uri.https(_baseUrl, '3/movie/$movieId',
+        {
+          'api_key': _apiKey, 
+          'language': _language,
+        },
+    );
+    final response = await http.get(url);
+    final movieResponse = Movie.fromJson(response.body);
+    
+    return movieResponse;
+  }
+
 }

@@ -20,7 +20,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   
   @override
-  void initState() {
+  void initState(){
     super.initState();
   }
 
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
 
     final moviesProvider = Provider.of<SocketService>(context);
-
+    checkLoginState(context);
     return Scaffold(
       //backgroundColor: Color.fromARGB(218, 0, 0, 0),
       appBar: AppBar(
