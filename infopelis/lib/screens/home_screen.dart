@@ -24,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final size = MediaQuery.of(context).size;
     checkLoginState(context);
     return Scaffold(
-      //backgroundColor: Color.fromARGB(218, 0, 0, 0),
+      backgroundColor: Color.fromARGB(211, 255, 255, 255),
       appBar: AppBar(
         title: const Text('Películas en cines',style: TextStyle(fontFamily: 'Bebas',fontSize: 36),),
         elevation: 10,

@@ -32,13 +32,13 @@ class MovieSlider extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 20,),
             child: Text(
               title,
               style: TextStyle(fontSize: 20, color: Colors.black),
             ),
           ),
-          SizedBox(height: 5,),
+          SizedBox(height: 10,),
           Expanded(
             child: ListView.builder(
                 scrollDirection: Axis.horizontal,
