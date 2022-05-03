@@ -12,21 +12,13 @@ import '../services/socket_service.dart';
 */
 
 class HomeScreen extends StatefulWidget {
-  
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
-  @override
-  void initState(){
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-
     final moviesProvider = Provider.of<SocketService>(context);
     checkLoginState(context);
     return Scaffold(
