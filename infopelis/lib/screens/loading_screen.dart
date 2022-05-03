@@ -15,24 +15,35 @@ class _LoadingScreenState extends State<LoadingScreen> {
   Widget build(BuildContext context) {
     final moviesProvider = Provider.of<SocketService>(context);
     return Scaffold(
-      backgroundColor: Colors.cyan[100],
+      backgroundColor: Color.fromARGB(185, 134, 201, 230),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.movie_filter_rounded,size: 200,),
+            Icon(Icons.movie_filter_rounded,size: 200,color: Colors.black),
             SizedBox(height: 70,),
             Container(
-              width: 100,
-              child: moviesProvider.serverStatus == ServerStatus.Connecting ? LinearProgressIndicator(
-                color: Colors.red,
-              ) : ElevatedButton(onPressed: (() {
+              child: moviesProvider.serverStatus == ServerStatus.Connecting ? Container(
+                width: 100,
+                child: LinearProgressIndicator(
+                  color: Colors.red,
+                ),
+              ) : ElevatedButton(
+                onPressed: (() {
                 if (moviesProvider.onDisplayMovies.length == 0) {
                   showAlertDialog(context, "Error con el Servidor", "Ocurrió un error, por favor reinicie la aplicación.");
                 }else{
                   Navigator.pushReplacementNamed(context, 'home');
                 }
-              }), child: Text('Ingresar')),
+              }), 
+                child: const Text('Ingresar'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  elevation: 10,
+                  minimumSize: Size(300, 50)
+                ),
+
+              ),
             )
           ],
         ),
