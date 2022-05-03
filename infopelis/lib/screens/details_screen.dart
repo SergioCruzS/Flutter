@@ -128,10 +128,10 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
                       setState(() {});
                     },
                     child: Container(
-                      margin: EdgeInsets.only(left: 90,top: 5),
-                      height: 30,
-                      width: 30,
-                      child: FavoriteService.favorite ? Icon(Icons.star) : Icon(Icons.star_outline),                    
+                      margin: EdgeInsets.only(left: 80,top: 5),
+                      height: 40,
+                      width: 40,
+                      child: FavoriteService.favorite ? Icon(Icons.star,color: Colors.yellow[900],size: 50,) : Icon(Icons.star_outline,color: Color.fromARGB(255, 193, 190, 190), size: 50),                    
                     ),
                   )
                 ]
