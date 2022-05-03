@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../models/models.dart';
@@ -85,6 +86,7 @@ class _VideoState extends State<VideoTrailer>{
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return YoutubePlayerBuilder(
         onExitFullScreen: (){
           SystemChrome.setPreferredOrientations(DeviceOrientation.values);
@@ -93,7 +95,7 @@ class _VideoState extends State<VideoTrailer>{
           controller: _controller,
           showVideoProgressIndicator: true,
           topActions: <Widget>[
-          const SizedBox(width: 8.0),
+          SizedBox(width: 8*(size.width/Enviroment.width)),
           Expanded(
             child: Text(
               _controller.metadata.title,
@@ -127,8 +129,8 @@ class _VideoState extends State<VideoTrailer>{
         builder: (context,player){
            return Container(
                  child: player,
-                 height: 300,
-                 padding: EdgeInsets.only(bottom: 50),
+                 height: 300*(size.height/Enviroment.height),
+                 padding: EdgeInsets.only(bottom: 50, left: 10,right: 10),
            );
         },
       );
@@ -137,13 +139,14 @@ class _VideoState extends State<VideoTrailer>{
    
 }
 
-class listVideosMovies extends StatelessWidget {
+class ListVideosMovies extends StatelessWidget {
   final int movieId;
 
-  const listVideosMovies(this.movieId);
+  const ListVideosMovies(this.movieId);
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     final moviesProvider = Provider.of<MoviesProvider>(context, listen: false);
     List<String> keys = [];
     return FutureBuilder(
@@ -151,16 +154,16 @@ class listVideosMovies extends StatelessWidget {
       builder: (_,AsyncSnapshot<List<VideoMovie>> snapshot){
            if (!snapshot.hasData) {
               return Container(
-                child: Center(child: Container(height: 30,width: 30,child: const CircularProgressIndicator())),
-                height: 300,
+                child: Center(child: Container(height: 30*(size.height/Enviroment.height),width: 30*(size.width/Enviroment.width),child: const CircularProgressIndicator())),
+                height: 300*(size.height/Enviroment.height),
                 padding: const EdgeInsets.only(bottom: 50),
               );
            }
            final List<VideoMovie> videos = snapshot.data!;
            if (videos.isEmpty) {
               return Container(
-                child: Center(child: Container(height: 30,width: 30,child: const CircularProgressIndicator())),
-                height: 300,
+                child: Center(child: Container(height: 30*(size.height/Enviroment.height),width: 30*(size.width/Enviroment.width),child: const CircularProgressIndicator())),
+                height: 300*(size.height/Enviroment.height),
                 padding: const EdgeInsets.only(bottom: 50),
               );
            }

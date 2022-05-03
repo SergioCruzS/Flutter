@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/services/favorite_service.dart';
 import 'package:provider/provider.dart';
@@ -22,9 +23,10 @@ class MovieSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
-      height: 290,
+      height: 350*(size.height/Enviroment.height),
       padding: EdgeInsets.only(bottom: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,10 +60,11 @@ class _MoviePoster extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     movie.heroId = 'slider${sectionTitle.trim()}-${movie.id}';
     return Container(
-      width: 120,
-      height: 190,
+      width: 120*(size.width/Enviroment.width),
+      height: 190*(size.height/Enviroment.height),
       margin: EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         children: [
@@ -88,14 +91,14 @@ class _MoviePoster extends StatelessWidget {
                 child: FadeInImage(
                   placeholder: AssetImage('assets/no-image.jpg'), 
                   image: NetworkImage(movie.fullPosterImage),
-                  width: 130,
-                  height: 190,
+                  width: 130*(size.width/Enviroment.width),
+                  height: 190*(size.height/Enviroment.height),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: 10*(size.height/Enviroment.height)),
           Text(
             movie.title,
             maxLines: 2,

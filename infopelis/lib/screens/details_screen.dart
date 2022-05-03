@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/models/models.dart';
 import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/services/favorite_service.dart';
@@ -26,7 +27,7 @@ class DetailsScreen extends StatelessWidget {
                    _PosterAndTitle(movie),
                    _Overview(movie),
                    CastingCards(movie.id),
-                   listVideosMovies(movie.id)
+                   ListVideosMovies(movie.id)
                 ]
               )
             )
@@ -43,9 +44,10 @@ class _CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SliverAppBar(
       backgroundColor: Color.fromARGB(255, 8, 48, 227),
-      expandedHeight: 200,
+      expandedHeight: 200*(size.height/Enviroment.height),
       pinned: true,
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
@@ -85,7 +87,7 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    
+    final size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.only(top: 20),
       padding: EdgeInsets.symmetric(horizontal: 20),
@@ -100,7 +102,7 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
                   FadeInImage(
                     placeholder: AssetImage('assets/no-image.jpg'),
                     image: NetworkImage(widget.movie.fullPosterImage),
-                    height: 200,
+                    height: 200*(size.height/Enviroment.height),
                   ),
                   GestureDetector(
                     onTap: () async {
@@ -129,8 +131,8 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
                     },
                     child: Container(
                       margin: EdgeInsets.only(left: 80,top: 5),
-                      height: 40,
-                      width: 40,
+                      height: 40*(size.height/Enviroment.height),
+                      width: 40*(size.width/Enviroment.width),
                       child: FavoriteService.favorite ? Icon(Icons.star,color: Colors.yellow[900],size: 50,) : Icon(Icons.star_outline,color: Color.fromARGB(255, 193, 190, 190), size: 50),                    
                     ),
                   )
@@ -139,11 +141,11 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
             ),
           ),
           SizedBox(
-            width: 20,
+            width: 20*(size.width/Enviroment.width),
           ),
           Container(
-            width: 150,
-            height: 150,
+            width: 150*(size.width/Enviroment.width),
+            height: 150*(size.height/Enviroment.height),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -165,7 +167,7 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
                       size: 15,
                       color: Colors.grey,
                     ),
-                    SizedBox(width: 5),
+                    SizedBox(width: 5*(size.width/Enviroment.width)),
                     Text(
                       widget.movie.voteAverage.toString(),
                       style: textTheme.caption,

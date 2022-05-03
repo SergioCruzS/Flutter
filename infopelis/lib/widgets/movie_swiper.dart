@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/models/models.dart';
 import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/services/favorite_service.dart';
@@ -69,8 +70,8 @@ class MovieSwiper extends StatelessWidget {
                     child: FadeInImage(
                         placeholder: AssetImage('assets/no-image.jpg'), 
                         image: NetworkImage(movie.fullPosterImage),
-                        width: 130,
-                        height: 190,
+                        width: 130*(size.width/Enviroment.width),
+                        height: 190*(size.height/Enviroment.height),
                         fit: BoxFit.cover,
                     ),
                 ),

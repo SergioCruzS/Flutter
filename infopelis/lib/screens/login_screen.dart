@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/widgets/alert_dialog.dart';
@@ -9,6 +10,7 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -21,7 +23,7 @@ class LoginScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               _Logo(),
-              SizedBox(height: 30,),
+              SizedBox(height: 30*(size.height/Enviroment.height),),
               _Form(),
               _Labels(),
             ],
@@ -36,8 +38,9 @@ class LoginScreen extends StatelessWidget {
 class _Logo extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
+      final size = MediaQuery.of(context).size;
       return Container(
-        width: 250,
+        width: 250*(size.width/Enviroment.width),
         child: Center(
           child: Column(
             children: <Widget>[
@@ -102,11 +105,12 @@ class _Labels extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       child: Column(
         children: <Widget>[
            Text('¿No tienes cuenta?'),
-           SizedBox(height: 10,),
+           SizedBox(height: 10*(size.height/Enviroment.height),),
            ElevatedButton(onPressed: (){Navigator.pushNamed(context, 'register');}, child: Text('Registrate ahora'))
         ],
       ),

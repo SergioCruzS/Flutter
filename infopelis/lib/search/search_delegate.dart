@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/models/movie.dart';
 import 'package:infopelis/providers/movies_provider.dart';
 import 'package:infopelis/services/auth_service.dart';
@@ -89,6 +90,7 @@ class _MovieSuggest extends StatelessWidget {
   const _MovieSuggest(this.movie);
     @override
     Widget build(BuildContext context) {
+      final size = MediaQuery.of(context).size;
       movie.heroId = 'search-${movie.id}';
       return ListTile(
         leading: Hero(
@@ -96,7 +98,7 @@ class _MovieSuggest extends StatelessWidget {
           child: FadeInImage(
             placeholder: const AssetImage('assets/no-image.jpg'),
             image: NetworkImage(movie.fullPosterImage),
-            width: 50,
+            width: 50*(size.width/Enviroment.width),
             fit: BoxFit.contain,
           ),
         ),
