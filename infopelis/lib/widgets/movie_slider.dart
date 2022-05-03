@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/services/favorite_service.dart';
 import 'package:provider/provider.dart';
 
@@ -66,10 +67,15 @@ class _MoviePoster extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: ()async{
-                bool resp = await Provider.of<FavoriteService>(context,listen: false).findMovieinDB(movie.id.toString());
-                if (resp) {
-                  FavoriteService.favorite = true;
-                  Navigator.pushNamed(context, 'details',arguments: movie);
+                if (AuthService.data.isNotEmpty) {
+                  bool resp = await Provider.of<FavoriteService>(context,listen: false).findMovieinDB(movie.id.toString());
+                  if (resp) {
+                    FavoriteService.favorite = true;
+                    Navigator.pushNamed(context, 'details',arguments: movie);
+                  }else{
+                    FavoriteService.favorite = false;
+                    Navigator.pushNamed(context, 'details',arguments: movie);
+                  }
                 }else{
                   FavoriteService.favorite = false;
                   Navigator.pushNamed(context, 'details',arguments: movie);

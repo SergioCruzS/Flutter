@@ -117,7 +117,7 @@ class AuthService with ChangeNotifier{
          'x-token': token.toString()
        }
     );
-     print(resp.body);
+    
     if ( resp.statusCode == 200 ) {
       final loginResponse = loginResponseFromJson(resp.body);
       this.user = loginResponse.userDb;

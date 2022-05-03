@@ -76,14 +76,19 @@ class _FormState extends State<_Form> {
           ),
           ElevatedButton(
             onPressed: authService.accessing ? null : () async {
-              FocusScope.of(context).unfocus();
-              final registerOk = await authService.register(nameController.text,emailController.text.trim(), passwordController.text);
-
-              if (registerOk) {
-                Navigator.pushReplacementNamed(context, 'home');
-              }else{
-                showAlertDialog(context, 'Error al registrarse', 'Revise que sus datos sean correctos');
+              if (passwordController.text == repeatPasswordController.text) {
+                FocusScope.of(context).unfocus();
+                final registerOk = await authService.register(nameController.text,emailController.text.trim(), passwordController.text);
+  
+                if (registerOk) {
+                  Navigator.pushReplacementNamed(context, 'home');
+                }else{
+                  showAlertDialog(context, 'Error al registrarse', 'Revise que sus datos sean correctos');
+                }
+              } else {
+                showAlertDialog(context, '¡Error!', 'Las contraseñas ingresadas no coinciden');
               }
+              
             }, 
             child: Text('Registrarse')
           )
