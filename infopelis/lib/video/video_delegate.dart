@@ -89,7 +89,7 @@ class _VideoState extends State<VideoTrailer>{
     final size = MediaQuery.of(context).size;
     return YoutubePlayerBuilder(
         onExitFullScreen: (){
-          SystemChrome.setPreferredOrientations(DeviceOrientation.values);
+          SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
         },
         player: YoutubePlayer(
           controller: _controller,
@@ -107,16 +107,16 @@ class _VideoState extends State<VideoTrailer>{
               maxLines: 1,
             ),
           ),
-               IconButton(
-                 icon: const Icon(
-                   Icons.settings,
-                   color: Colors.white,
-                   size: 25.0,
-                 ),
-                 onPressed: () {
-                   log('Settings Tapped!');
-                 },
-               ),
+            IconButton(
+              icon: const Icon(
+                Icons.settings,
+                color: Colors.white,
+                size: 25.0,
+              ),
+              onPressed: () {
+                log('Settings Tapped!');
+              },
+            ),
           ],
              onReady: () {
                _isPlayerReady = true;

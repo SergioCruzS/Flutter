@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/helpers/portrait_mode.dart';
 import 'package:infopelis/providers/movies_provider.dart';
 import 'package:infopelis/screens/account_screen.dart';
 import 'package:infopelis/screens/details_screen.dart';
@@ -15,9 +16,10 @@ import 'package:provider/provider.dart';
 
 void main() => runApp(AppState());
 
-class AppState extends StatelessWidget {
+class AppState extends StatelessWidget with PortraitModeMixin{
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
