@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/services/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -8,6 +9,7 @@ class AccountScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -21,15 +23,21 @@ class AccountScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 _UserData(),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.green
+                SizedBox(height: 20*(size.height/Enviroment.height),),
+                Container(
+                  width: 300*(size.width/Enviroment.width),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.green,
+                      minimumSize: Size(300*(size.width/Enviroment.width), 100*(size.height/Enviroment.height))
+                    ),
+                    onPressed: (){
+                      Navigator.pushNamed(context, 'favorite');
+                    }, 
+                    child: Text('Ver mis favoritos')
                   ),
-                  onPressed: (){
-                    Navigator.pushNamed(context, 'favorite');
-                  }, 
-                  child: Text('Ver mis favoritos')
                 ),
+                SizedBox(height: 40*(size.height/Enviroment.height),),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     primary: Colors.red
@@ -63,22 +71,34 @@ class __UserDataState extends State<_UserData> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 50),
-      child: Column(
-        children: <Widget>[
-          _CustomFormTextField(
-            icon: Icons.account_circle_outlined, 
-            placeholder: 'Nombre',  
-            textController: nameController
-          ),
-          _CustomFormTextField(
-            icon: Icons.email_outlined, 
-            placeholder: 'Email',  
-            textController: emailController
-          ),
-          
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SizedBox(height: 30*(size.height/Enviroment.height),),
+            CircleAvatar(
+              backgroundColor: Colors.red[500] ,
+              radius: 100*(size.height/Enviroment.height),
+              child: Text(nameController.text.substring(0,1).toUpperCase(),
+                          style: TextStyle(fontSize: 90*(size.height/Enviroment.height))),
+            ),
+            SizedBox(height: 40*(size.height/Enviroment.height),),
+            _CustomFormTextField(
+              icon: Icons.account_circle_outlined, 
+              placeholder: 'Nombre',  
+              textController: nameController
+            ),
+            _CustomFormTextField(
+              icon: Icons.email_outlined, 
+              placeholder: 'Email',  
+              textController: emailController
+            ),
+            
+          ],
+        ),
       ),
     );
   }
