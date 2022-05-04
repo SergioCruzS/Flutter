@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infopelis/global/enviroment.dart';
 import 'package:infopelis/models/favmovie.dart';
 import 'package:infopelis/models/models.dart';
 import 'package:infopelis/providers/movies_provider.dart';
@@ -14,15 +15,19 @@ class _FavoritesMoviesState extends State<FavoritesMovies> {
   @override
   Widget build(BuildContext context) {
     final fmov = Provider.of<FavoriteService>(context);
+    final size = MediaQuery.of(context).size;
     List<FavMovie> listMovies =[];
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color.fromARGB(218, 255, 255, 255),
         appBar: AppBar(
           title: Text('Películas Favoritas'),
-          centerTitle: true,       
+          centerTitle: true,     
+          backgroundColor: Color.fromARGB(255, 8, 48, 227),  
         ),
         body:  Column(
           children: <Widget>[
+            SizedBox(height: 20*(size.height/Enviroment.height),),
             Expanded(
               child: FutureBuilder(
                 future: fmov.listFavorites(),
@@ -54,6 +59,7 @@ Widget _movieTile(BuildContext context, FavMovie mov){
         }
       },
       background: Container(
+        padding: EdgeInsets.only(left: 30),
         color: Colors.redAccent,
         child: Align(
           alignment: Alignment.centerLeft,
@@ -61,17 +67,21 @@ Widget _movieTile(BuildContext context, FavMovie mov){
         ),
       ),
       child: ListTile(
-            leading: CircleAvatar(
-              child: Image(image: NetworkImage(mov.fullPosterImage)),
-              backgroundColor: Colors.white,
+            minVerticalPadding: 30,
+            leading: Hero(
+              tag: 'fav-${mov.id}',
+              child: ClipRRect(
+                child: Image(image: NetworkImage(mov.fullPosterImage)),
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
             title: Text(mov.title),
-            trailing: Icon(Icons.arrow_right_outlined),
+            trailing: Icon(Icons.arrow_circle_right_outlined),
             onTap: () async {
               Movie movie = await Provider.of<MoviesProvider>(context, listen: false).getMoviebyID(int.parse(mov.id));
               movie.heroId = 'fav-${movie.id}';             
               FavoriteService.favorite = true; 
-              Navigator.pushNamed(context, 'details',arguments: movie);              
+              Navigator.pushNamed(context, 'detailsFav',arguments: movie);              
             },
       ),
     );

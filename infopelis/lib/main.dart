@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infopelis/providers/movies_provider.dart';
 import 'package:infopelis/screens/account_screen.dart';
 import 'package:infopelis/screens/details_screen.dart';
+import 'package:infopelis/screens/details_screen_favorites.dart';
 import 'package:infopelis/screens/favorites_screen.dart';
 import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/screens/loading_screen.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home'    : (_) => HomeScreen(), 
         'details' : (_) => DetailsScreen(),
+        'detailsFav' : (_) => DetailsScreenFavorites(),
         'login'   : (_) => LoginScreen(),
         'register': (_) => RegisterScreen(),
         'account' : (_) => AccountScreen(),
