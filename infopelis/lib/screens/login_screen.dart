@@ -15,8 +15,10 @@ class LoginScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Iniciar Sesión'),
+          centerTitle: true,
+          backgroundColor: Color.fromARGB(255, 8, 48, 227),
         ),
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Color.fromARGB(218, 255, 255, 255),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(top:100),
           child: Column(
@@ -65,6 +67,7 @@ class __FormState extends State<_Form> {
   @override
   Widget build(BuildContext context) {
     final authService = Provider.of<AuthService>(context);
+    final size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 50),
       child: Column(
@@ -82,18 +85,41 @@ class __FormState extends State<_Form> {
             textController: passwordController,
             isPassword: true,
           ),
-          ElevatedButton(
-            onPressed: authService.accessing ? null : () async {
-              FocusScope.of(context).unfocus();
-              final loginOk = await authService.login(emailController.text.trim(), passwordController.text);
-
-              if (loginOk) {
-                Navigator.pushReplacementNamed(context, 'home');
-              }else{
-                showAlertDialog(context, 'Error al iniciar sesión', 'Revise que sus datos sean correctos');
-              }
-            }, 
-            child: Text('Iniciar Sesión')
+          //Container(
+          //  width: 300*(size.width/Enviroment.width),
+          //  child: ElevatedButton(
+          //    onPressed: (){Navigator.pushNamed(context, 'register');}, 
+          //    child: Text(
+          //      '¿Olvidaste tu contraseña?',
+          //      style: TextStyle(color: Colors.black45),                     
+          //    ),
+          //    style: ElevatedButton.styleFrom(
+          //      primary: Colors.transparent,
+          //      shadowColor: Colors.transparent,  
+          //      minimumSize: Size(300*(size.width/Enviroment.width), 50*(size.height/Enviroment.height))               
+          //    ),
+          //  ),
+          //),
+          SizedBox(height: 20*(size.height/Enviroment.height),),
+          Container(
+            width: 300*(size.width/Enviroment.width),
+            child: ElevatedButton(
+              onPressed: authService.accessing ? null : () async {
+                FocusScope.of(context).unfocus();
+                final loginOk = await authService.login(emailController.text.trim(), passwordController.text);
+          
+                if (loginOk) {
+                  Navigator.pushReplacementNamed(context, 'home');
+                }else{
+                  showAlertDialog(context, 'Error al iniciar sesión', 'Revise que sus datos sean correctos');
+                }
+              }, 
+              child: Text('Iniciar Sesión'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
+                minimumSize: Size(300*(size.width/Enviroment.width), 50*(size.height/Enviroment.height))
+              ),
+            ),
           )
         ],
       ),
@@ -109,9 +135,22 @@ class _Labels extends StatelessWidget {
     return Container(
       child: Column(
         children: <Widget>[
-           Text('¿No tienes cuenta?'),
-           SizedBox(height: 10*(size.height/Enviroment.height),),
-           ElevatedButton(onPressed: (){Navigator.pushNamed(context, 'register');}, child: Text('Registrate ahora'))
+           SizedBox(height: 60*(size.height/Enviroment.height),),
+           Text('¿No tienes cuenta?',
+                style: TextStyle(fontSize: 16,color: Colors.black45),
+           ),
+           SizedBox(height: 30*(size.height/Enviroment.height),),
+           Container(
+             width: 300*(size.width/Enviroment.width),
+             child: ElevatedButton(
+               onPressed: (){Navigator.pushNamed(context, 'register');}, 
+               child: Text('Registrate ahora'),
+               style: ElevatedButton.styleFrom(
+                 primary: Colors.orange[400],  
+                 minimumSize: Size(300*(size.width/Enviroment.width), 50*(size.height/Enviroment.height))               
+               ),
+             ),
+           )
         ],
       ),
     );
