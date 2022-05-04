@@ -12,9 +12,11 @@ class AccountScreen extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color.fromARGB(215, 255, 255, 255),
         appBar: AppBar(
           centerTitle: true,
           title: Text('Datos del usuario'),
+          backgroundColor: Color.fromARGB(255, 8, 48, 227),
         ),
         body: SingleChildScrollView(
           child: Container(
