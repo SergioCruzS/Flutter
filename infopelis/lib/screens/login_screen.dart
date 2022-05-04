@@ -143,7 +143,7 @@ class _Labels extends StatelessWidget {
            Container(
              width: 300*(size.width/Enviroment.width),
              child: ElevatedButton(
-               onPressed: (){Navigator.pushNamed(context, 'register');}, 
+               onPressed: (){Navigator.pushReplacementNamed(context, 'register');}, 
                child: Text('Registrate ahora'),
                style: ElevatedButton.styleFrom(
                  primary: Colors.orange[400],  
