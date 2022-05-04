@@ -18,6 +18,7 @@ class DetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context)!.settings.arguments as Movie;
     return Scaffold(
+        backgroundColor: Color.fromARGB(252, 190, 190, 190),
         body: CustomScrollView(
           slivers: [
             _CustomAppBar(movie),
@@ -102,7 +103,7 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
                   FadeInImage(
                     placeholder: AssetImage('assets/no-image.jpg'),
                     image: NetworkImage(widget.movie.fullPosterImage),
-                    height: 200*(size.height/Enviroment.height),
+                    height: 250*(size.height/Enviroment.height),
                   ),
                   GestureDetector(
                     onTap: () async {
@@ -160,12 +161,13 @@ class _PosterAndTitleState extends State<_PosterAndTitle> {
                   style: textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
+                SizedBox(height: 10*(size.height/Enviroment.height) ,),
                 Row(
                   children: [
                     Icon(
                       Icons.star_outline,
-                      size: 15,
-                      color: Colors.grey,
+                      size: 20,
+                      color: Colors.black45,
                     ),
                     SizedBox(width: 5*(size.width/Enviroment.width)),
                     Text(
