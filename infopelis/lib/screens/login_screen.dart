@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:infopelis/global/enviroment.dart';
-import 'package:infopelis/screens/home_screen.dart';
 import 'package:infopelis/services/auth_service.dart';
 import 'package:infopelis/widgets/alert_dialog.dart';
 import 'package:infopelis/widgets/customTextField.dart';
@@ -20,7 +19,7 @@ class LoginScreen extends StatelessWidget {
         ),
         backgroundColor: Color.fromARGB(218, 255, 255, 255),
         body: SingleChildScrollView(
-          padding: EdgeInsets.only(top:100),
+          padding: EdgeInsets.only(top:30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
@@ -46,7 +45,7 @@ class _Logo extends StatelessWidget {
         child: Center(
           child: Column(
             children: <Widget>[
-                //Image(image: AssetImage('assets/loading.gif')),
+                Image(image: AssetImage('assets/logo.png')),
             ],
           ),
         ),
